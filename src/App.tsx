@@ -1,3 +1,6 @@
+import { Button } from "./components/Button/Button";
+import "./output.css";
+
 export const App = () => {
-  return <div>App</div>;
+  return <Button text="a" />;
 };
