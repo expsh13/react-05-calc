@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Button } from "./components/Button/Button";
 import "./output.css";
 
@@ -12,36 +12,48 @@ const ButtonLine = (props: ButtonLineType) => {
 };
 
 export const App = () => {
+  const [fieldText, setFieldText] = useState("");
+  const handleNumBtnClick = (value: string) => {
+    setFieldText((prev) => prev + value);
+  };
+  const handleBtnClear = () => {
+    setFieldText("");
+  };
+  const handleBtnResult = () => {
+    console.log(fieldText);
+  };
   return (
     <div className="w-80 mx-auto">
-      <p className="bg-white h-8 border border-gray-800 rounded mb-4"></p>
+      <p className="bg-white h-8 border border-gray-800 rounded mb-4 p-1">
+        {fieldText}
+      </p>
       <div className="grid gap-1">
         <ButtonLine>
-          <Button text="1" />
-          <Button text="2" />
-          <Button text="3" />
-          <Button text="+" />
+          <Button value="1" onClick={handleNumBtnClick} />
+          <Button value="2" onClick={handleNumBtnClick} />
+          <Button value="3" onClick={handleNumBtnClick} />
+          <Button value="+" onClick={handleNumBtnClick} />
         </ButtonLine>
         <ButtonLine>
-          <Button text="4" />
-          <Button text="5" />
-          <Button text="6" />
-          <Button text="-" />
+          <Button value="4" onClick={handleNumBtnClick} />
+          <Button value="5" onClick={handleNumBtnClick} />
+          <Button value="6" onClick={handleNumBtnClick} />
+          <Button value="-" onClick={handleNumBtnClick} />
         </ButtonLine>
         <ButtonLine>
-          <Button text="7" />
-          <Button text="8" />
-          <Button text="9" />
-          <Button text="*" />
+          <Button value="7" onClick={handleNumBtnClick} />
+          <Button value="8" onClick={handleNumBtnClick} />
+          <Button value="9" onClick={handleNumBtnClick} />
+          <Button value="*" onClick={handleNumBtnClick} />
         </ButtonLine>
         <ButtonLine>
-          <Button text="c" />
-          <Button text="0" />
-          <Button text="." />
-          <Button text="/" />
+          <Button value="c" onClick={handleBtnClear} />
+          <Button value="0" onClick={handleNumBtnClick} />
+          <Button value="." onClick={handleNumBtnClick} />
+          <Button value="/" onClick={handleNumBtnClick} />
         </ButtonLine>
         <ButtonLine>
-          <Button text="=" />
+          <Button value="=" onClick={handleBtnResult} />
         </ButtonLine>
       </div>
     </div>

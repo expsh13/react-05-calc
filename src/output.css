@@ -628,6 +628,10 @@ video {
   padding: 0.625rem;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .text-red-900 {
   --tw-text-opacity: 1;
   color: rgb(127 29 29 / var(--tw-text-opacity));
