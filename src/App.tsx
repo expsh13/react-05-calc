@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import { Button } from "./components/Button/Button";
 import "./output.css";
+import { evaluate } from "mathjs";
 
 type ButtonLineType = {
   children: ReactNode;
@@ -13,19 +14,29 @@ const ButtonLine = (props: ButtonLineType) => {
 
 export const App = () => {
   const [fieldText, setFieldText] = useState("");
+  const [err, setErr] = useState(false);
+
   const handleNumBtnClick = (value: string) => {
+    setErr(false);
     setFieldText((prev) => prev + value);
   };
   const handleBtnClear = () => {
     setFieldText("");
   };
   const handleBtnResult = () => {
-    console.log(fieldText);
+    try {
+      const result = evaluate(fieldText);
+      setFieldText(String(result));
+      setErr(false);
+    } catch {
+      setFieldText("");
+      setErr(true);
+    }
   };
   return (
     <div className="w-80 mx-auto">
       <p className="bg-white h-8 border border-gray-800 rounded mb-4 p-1">
-        {fieldText}
+        {err ? "err" : fieldText}
       </p>
       <div className="grid gap-1">
         <ButtonLine>
